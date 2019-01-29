@@ -1,6 +1,18 @@
 const nodeExternals = require('webpack-node-externals')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/vuetifyjs-nuxt/'
+  }
+} : {}
+
 module.exports = {
+  /*
+  ** Router base
+  */
+  ...routerBase,
+
   /*
   ** Headers of the page
   */

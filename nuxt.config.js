@@ -23,8 +23,12 @@ module.exports = {
   generate: {
     async routes () {
       let response = await axios.get('https://jsonplaceholder.typicode.com/users')
-
-      return response.data.map( users => 'users/' + users.id )
+      return response.data.map( 
+        users => ({
+          route: 'users/' + users.id,
+          payload: user
+        })
+      )
     }
   },
 

@@ -88,7 +88,8 @@
         fixed: false,
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
-          { icon: 'person', title: 'Users', to: '/users' }
+          { icon: 'person', title: 'Users', to: '/users' },
+          { icon: 'folder', title: 'Folder', to: '/folder' }
         ],
         miniVariant: false,
         right: true,

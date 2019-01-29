@@ -1,3 +1,5 @@
+const path = require('path')
+
 import axios from 'axios'
 
 const nodeExternals = require('webpack-node-externals')
@@ -94,6 +96,16 @@ module.exports = {
           })
         ]
       }
+      config.module.rules.push({
+        test: /\.md$/,
+        loader: 'frontmatter-markdown-loader',
+        include: path.resolve(__dirname, 'contents'),
+        options: {
+          vue: {
+            root: "dynamicMarkdown"
+          }
+        }
+      })
     }
   }
 }

@@ -28,6 +28,21 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
+
+  /*
+  ** Nuxt.js modules
+  */
+  modules: [
+    '@nuxtjs/axios',
+  ],
+
+  /*
+  ** axios configuration
+  */
+  axios: {
+    baseUrl: ''
+  },
+
   plugins: ['~/plugins/vuetify.js'],
   css: ['~/assets/style/app.styl'],
   /*

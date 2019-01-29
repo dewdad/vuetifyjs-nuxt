@@ -2,6 +2,8 @@
 
 > Nuxt.js + Vuetify.js project
 
+[![Build Status](https://travis-ci.org/migueabellan/vuetifyjs-nuxt.svg?branch=master)](https://travis-ci.org/migueabellan/vuetifyjs-nuxt)
+
 ## Build Setup
 
 ``` bash

@@ -87,14 +87,13 @@
         drawer: true,
         fixed: false,
         items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
-          { icon: 'apps', title: 'Users', to: '/users' }
+          { icon: 'home', title: 'Welcome', to: '/' },
+          { icon: 'person', title: 'Users', to: '/users' }
         ],
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: 'Vuetify + Nuxt.js template'
       }
     }
   }

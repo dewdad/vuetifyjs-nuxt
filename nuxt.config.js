@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const nodeExternals = require('webpack-node-externals')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
@@ -11,7 +13,20 @@ module.exports = {
   /*
   ** Router base
   */
-  ...routerBase,
+ ...routerBase,
+
+  mode: 'universal',
+
+  /*
+  ** Generate routes SSR
+  */
+  generate: {
+    async routes () {
+      let response = await axios.get('https://jsonplaceholder.typicode.com/users')
+
+      return response.data.map( users => 'users/' + users.id )
+    }
+  },
 
   /*
   ** Headers of the page

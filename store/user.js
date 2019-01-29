@@ -16,7 +16,7 @@ export const mutations = {
 
 export const actions = {
   async getUser ({ commit }, params) {
-    let { data } = await axios.get('https://jsonplaceholder.typicode.com/users/' + params.user)
+    let { data } = await axios.get('https://jsonplaceholder.typicode.com/users/' + params.id)
     commit('SET_USER', data)
   },
   async getUsers ({ commit }) {
@@ -24,8 +24,8 @@ export const actions = {
     commit('SET_USERS', data)
   },
   async nuxtServerInit ({ commit }, { route, params }) {
-    if (process.server && params.user) {
-      let { data } = await axios.get('https://jsonplaceholder.typicode.com/users/' + params.user)
+    if (process.server && params.id) {
+      let { data } = await axios.get('https://jsonplaceholder.typicode.com/users/' + params.id)
       commit('SET_USER', data)
     }
     if (process.server && route.name === 'users') {

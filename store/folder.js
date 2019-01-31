@@ -1,4 +1,5 @@
 // import axios from 'axios'
+import folders from '~/contents/folders.js'
 
 export const state = () => ({
   folder: {},
@@ -17,14 +18,11 @@ export const mutations = {
 export const actions = {
   async getFolders ({ commit }) {
     commit('INIT')
-
-    let folders = ['uno', 'dos']
-
-    async function asyncImport (file) {
-      let content = await import(`~/contents/${file}.md`)
+    async function asyncImport (folder) {
+      let content = await import(`~/contents/${folder}/README.md`)
       commit('ADD_FOLDER', content)
     }
-    folders.map(file => asyncImport(file))
+    folders.map(folder => asyncImport(folder))
   },
   async nuxtServerInit ({ commit }, { route, params }) {
     if (process.server && params.id) {

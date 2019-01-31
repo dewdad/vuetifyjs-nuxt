@@ -10,12 +10,24 @@ export const mutations = {
   INIT: (state) => {
     state.folders = []
   },
+  SET_FOLDER: (state, folder) => {
+    state.folder = folder
+  },
   ADD_FOLDER: (state, folder) => {
     state.folders.push(folder)
   }
 }
 
 export const actions = {
+  async getFolder ({ commit }, params) {
+    async function asyncImport (folder) {
+      let content = await import(`~/contents/${folder}/README.md`)
+      if (content.attributes.name === params.name) {
+        commit('SET_FOLDER', content)
+      }
+    }
+    folders.map(folder => asyncImport(folder))
+  },
   async getFolders ({ commit }) {
     commit('INIT')
     async function asyncImport (folder) {
@@ -28,7 +40,7 @@ export const actions = {
     if (process.server && params.id) {
       // ToDo
     }
-    if (process.server && route.name === 'folder') {
+    if (process.server && route.name === 'folders') {
       // ToDo
     }
   }

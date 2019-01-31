@@ -33,17 +33,7 @@ module.exports = {
           }
         })
       })
-      let files = []
-      /*
-      async function asyncImport (folder) {
-        let content = await import(`./contents/${folder}/README.md`)
-        return {
-          route: '/folders/' + folder,
-          payload: content
-        }
-      }
-      files = folders.map(folder => asyncImport(folder))
-      */
+      let files = folders.map(file => '/folders/' + file)
       return Promise.all([users, files]).then(values => {
         return [...values[0], ...values[1]]
       })

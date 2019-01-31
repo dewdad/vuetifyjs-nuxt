@@ -5,37 +5,36 @@
         <template slot="items" slot-scope="props">
           <td>{{ props.item.attributes.name }}</td>
           <td>{{ props.item.attributes.tags }}</td>
-          <!--
-          <td class="text-xs-right">{{ props.item.username }}</td>
-          <td class="text-xs-right">{{ props.item.email }}</td>
-          -->
           <td class="justify-center layout px-0">
-            <router-link :to="`/folders/${props.item.attributes.name}`">Ver</router-link>
+            <router-link :to="props.item.path">Ver</router-link>
           </td>
         </template>
-      </v-data-table>      
+      </v-data-table>   
     </v-flex>
   </v-layout>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import folders from '~/contents/folders.js'
 
 export default {
   head () {
     return {
-      title: 'Folder'
+      title: 'Folders'
     }
   },
-  async fetch ({ store }) {
-    await store.dispatch('folder/getFolders')
-  },
-  computed: {
-    ...mapState({
-      folders: state => {
-        return state.folder.folders
-      }
-    })
+  async asyncData ({ store, params }) {
+    async function asyncImport (folder) {
+      let content = await import('~/contents/' + folder + '/README.md')
+      content.path = '/folders/' + folder
+      return content
+    }
+    return Promise.all(folders.map(folder => asyncImport(folder)))
+      .then((res) => {
+        return {
+          folders: res
+        }
+      })
   }
 }
 </script>

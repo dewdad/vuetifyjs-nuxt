@@ -89,7 +89,7 @@
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
           { icon: 'person', title: 'Users', to: '/users' },
-          { icon: 'folder', title: 'Folder', to: '/folder' }
+          { icon: 'folder', title: 'Folder', to: '/folders' }
         ],
         miniVariant: false,
         right: true,

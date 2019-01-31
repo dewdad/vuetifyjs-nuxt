@@ -3,7 +3,8 @@
     <v-flex>
       <v-data-table :items="folders">
         <template slot="items" slot-scope="props">
-          <td>{{ props.item.name }}</td>
+          <td>{{ props.item.attributes.name }}</td>
+          <td>{{ props.item.attributes.tags }}</td>
           <!--
           <td class="text-xs-right">{{ props.item.username }}</td>
           <td class="text-xs-right">{{ props.item.email }}</td>
@@ -32,7 +33,6 @@ export default {
   computed: {
     ...mapState({
       folders: state => {
-        console.log(state.folder.folders)
         return state.folder.folders
       }
     })

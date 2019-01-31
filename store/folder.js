@@ -6,35 +6,25 @@ export const state = () => ({
 })
 
 export const mutations = {
-  SET_FOLDERS: (state, folders) => {
-    state.folders = folders
+  INIT: (state) => {
+    state.folders = []
   },
   ADD_FOLDER: (state, folder) => {
-    state.folders = folder
+    state.folders.push(folder)
   }
 }
 
 export const actions = {
   async getFolders ({ commit }) {
-    const folders = ['uno', 'dos']
+    commit('INIT')
+
+    let folders = ['uno', 'dos']
 
     async function asyncImport (file) {
       let content = await import(`~/contents/${file}.md`)
-      /*
-      return {
-        attributes: content.attributes,
-        body: content.body,
-        html: content.html
-      }
-      */
-      return content.attributes
+      commit('ADD_FOLDER', content)
     }
-
-    return Promise.all(folders.map(file => asyncImport(file)))
-      .then((res) => {
-        console.log(res)
-        commit('ADD_FOLDER', res)
-      })
+    folders.map(file => asyncImport(file))
   },
   async nuxtServerInit ({ commit }, { route, params }) {
     if (process.server && params.id) {

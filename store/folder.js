@@ -37,7 +37,7 @@ export const actions = {
     folders.map(folder => asyncImport(folder))
   },
   async nuxtServerInit ({ commit }, { route, params }) {
-    if (process.server && params.id) {
+    if (process.server && params.name) {
       // ToDo
     }
     if (process.server && route.name === 'folders') {

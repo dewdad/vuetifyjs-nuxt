@@ -1,6 +1,7 @@
 const path = require('path')
 
 import axios from 'axios'
+import folders from './contents/folders.js'
 
 const nodeExternals = require('webpack-node-externals')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
@@ -23,14 +24,29 @@ module.exports = {
   ** Generate routes SSR
   */
   generate: {
-    async routes () {
-      let response = await axios.get('https://jsonplaceholder.typicode.com/users')
-      return response.data.map( 
-        user => ({
-          route: 'users/' + user.id,
-          payload: user
+    routes: async function () {
+      let users = await axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
+        return res.data.map((user) => {
+          return {
+            route: '/users/' + user.id,
+            payload: user
+          }
         })
-      )
+      })
+      let files = []
+      /*
+      async function asyncImport (folder) {
+        let content = await import(`./contents/${folder}/README.md`)
+        return {
+          route: '/folders/' + folder,
+          payload: content
+        }
+      }
+      files = folders.map(folder => asyncImport(folder))
+      */
+      return Promise.all([users, files]).then(values => {
+        return [...values[0], ...values[1]]
+      })
     }
   },
 

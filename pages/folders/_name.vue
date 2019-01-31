@@ -1,19 +1,23 @@
 <template>
   <v-layout>
-    <v-flex text-xs-center>
-      <h1>{{ folder.attributes.name }}</h1>
+    <v-flex>
+      <vue-markdown>{{ folder.body }}</vue-markdown>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import VueMarkdown from 'vue-markdown'
 
 export default {
   head () {
     return {
       title: 'Folder: ' + this.folder.attributes.name
     }
+  },
+  components: {
+    VueMarkdown
   },
   async fetch ({ store, params }) {
     await store.dispatch('folder/getFolder', params)

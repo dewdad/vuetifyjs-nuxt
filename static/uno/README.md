@@ -9,4 +9,4 @@ tags:
 
 Lorem impsum
 
-![](v.png)
+![](/uno/v.png)

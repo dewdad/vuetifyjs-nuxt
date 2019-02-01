@@ -1,7 +1,7 @@
 const path = require('path')
 
 import axios from 'axios'
-import folders from './contents/folders.js'
+import folders from './static/folders.js'
 
 const nodeExternals = require('webpack-node-externals')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')

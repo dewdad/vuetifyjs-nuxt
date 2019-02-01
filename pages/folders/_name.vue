@@ -19,7 +19,7 @@ export default {
     VueMarkdown
   },
   async asyncData ({ store, params }) {
-    const content = await import('~/contents/' + params.name + '/README.md')
+    const content = await import('~/static/' + params.name + '/README.md')
     return {
       content: content
     }

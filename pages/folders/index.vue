@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import folders from '~/contents/folders.js'
+import folders from '~/static/folders.js'
 
 export default {
   head () {
@@ -25,7 +25,7 @@ export default {
   },
   async asyncData ({ store, params }) {
     async function asyncImport (folder) {
-      let content = await import('~/contents/' + folder + '/README.md')
+      let content = await import('~/static/' + folder + '/README.md')
       content.path = '/folders/' + folder
       return content
     }

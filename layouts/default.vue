@@ -89,7 +89,8 @@
         items: [
           { icon: 'home', title: 'Welcome', to: '/' },
           { icon: 'person', title: 'Users', to: '/users' },
-          { icon: 'folder', title: 'Folder', to: '/folders' }
+          { icon: 'folder', title: 'Folder', to: '/folders' },
+          { icon: 'cloud', title: 'Firebase', to: '/clouds' }
         ],
         miniVariant: false,
         right: true,

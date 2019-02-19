@@ -1,17 +1,9 @@
 <template>
   <v-layout>
     <v-flex>
-      <v-data-table :items="users">
+      <v-data-table :items="facts">
         <template slot="items" slot-scope="props">
-          <td class="text-xs-right">{{ props.item.id }}</td>
-          <!--
-          <td>{{ props.item.name }}</td>
-          <td class="text-xs-right">{{ props.item.username }}</td>
-          <td class="text-xs-right">{{ props.item.email }}</td>
-          <td class="justify-center layout px-0">
-            <router-link :to="`/users/${props.item.id}`">Ver</router-link>
-          </td>
-          -->
+          <td>{{ props.item.text }}</td>
         </template>
       </v-data-table>      
     </v-flex>
@@ -19,26 +11,18 @@
 </template>
 
 <script>
-// import { mapState } from 'vuex'
+import axios from 'axios'
 
 export default {
   head () {
     return {
       title: 'Firebase'
     }
-  }
-  /*
-  ,
-  async fetch ({ store }) {
-    await store.dispatch('user/getUsers')
   },
-  computed: {
-    ...mapState({
-      users: state => {
-        return state.user.users
-      }
-    })
+  async asyncData () {
+    const res = await axios.get('https://vuetify-nuxt-example.firebaseio.com/items.json')
+    const facts = res.data
+    return { facts }
   }
-  */
 }
 </script>
